@@ -1,5 +1,5 @@
 import streamlit as st
-from langgraph_backend import chatbot
+from langgraph_backend import chatbot , retrieve_all_threads
 from langchain_core.messages import HumanMessage
 import uuid
 
@@ -30,7 +30,7 @@ if 'thread_id' not in st.session_state:
     st.session_state['thread_id']= generate_thread_id()
 
 if 'chat_threads' not in st.session_state:
-    st.session_state['chat_threads']=[]
+    st.session_state['chat_threads']=retrieve_all_threads()
 add_thread(st.session_state['thread_id'])
 
 
@@ -39,7 +39,7 @@ st.sidebar.title("LnagGraph Chatbox")
 if st.sidebar.button('new chat'):
     reset_chat()
 st.sidebar.header('my conversations')
-for thread_id in st.session_state['chat_threads']:
+for thread_id in st.session_state['chat_threads'][::-1]:
     if st.sidebar.button(str(thread_id)):
         st.session_state['thread_id']=thread_id
         messages = load_convo(thread_id)
