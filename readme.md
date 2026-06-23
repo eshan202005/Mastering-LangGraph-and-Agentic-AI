@@ -23,4 +23,4 @@ LangChain
 OpenAI
 Pydantic
 FastAPI (for production examples)
-streamlit for ui 
+langsmith integration 
