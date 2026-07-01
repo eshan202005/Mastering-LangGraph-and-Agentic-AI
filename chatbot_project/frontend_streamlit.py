@@ -138,5 +138,5 @@ if user_input:
 
     # Save assistant message
     st.session_state["message_history"].append(
-        {"role": "assistant", "content": ai_message}
+        {"role": "assistant", "content": ai_message}    
     )
